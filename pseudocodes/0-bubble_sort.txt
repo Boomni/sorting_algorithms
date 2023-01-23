@@ -1,0 +1,17 @@
+BEGIN bubble_sort(array, size)
+    Declare a variable 'temp' to store temporary values
+    Declare a variable 'swapped' and set it to true
+    Declare a variable 'i' and set it to 0
+    WHILE 'swapped' is true
+        Set 'swapped' to false
+        FOR i = 0 to size - 2
+            IF the current element in the array is greater than the next element THEN
+                Store the current element in the 'temp' variable
+                Replace the current element with the next element
+                Replace the next element with the 'temp' variable
+                Set 'swapped' to true
+                Call the function 'print_array' to print the sorted array
+            END IF
+        ENDFOR
+    ENDWHILE
+END
