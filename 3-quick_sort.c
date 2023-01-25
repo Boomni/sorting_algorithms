@@ -9,17 +9,17 @@
  *
  * Return: void
  */
-void quick_sort(int *array, size_t size)
+void partition(int *array, int start, int end)
 {
-	int pivot = array[size - 1];
-	int i = -1;
+	int pivot = array[end];
+	int i = start - 1;
 	size_t j;
-	int temp;
+	int *temp;
 
-	if (size < 2)
+	if (start >= end)
 		return;
 
-	for (j = 0; j < size - 1; j++)
+	for (j = start; j < end; j++)
 	{
 		if (array[j] < pivot)
 		{
@@ -27,16 +27,21 @@ void quick_sort(int *array, size_t size)
 			temp = array[i];
 			array[i] = array[j];
 			array[j] = temp;
-			print_array(array, size);
+			print_array(array, end + 1);
 		}
 	}
 
 	i++;
 	temp = array[i];
 	array[i] = pivot;
-	array[size - 1] = temp;
-	print_array(array, size);
+	array[end] = temp;
+	print_array(array, end + 1);
 
-	quick_sort(array, i);
-	quick_sort(array + i + 1, size - i - 1);
+	partition(array, start, i - 1);
+	partition(array, i + 1, end);
+}
+
+void quick_sort(int *array, size_t size)
+{
+	partition(array, 0, size - 1);
 }
