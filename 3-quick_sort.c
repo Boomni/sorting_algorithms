@@ -29,7 +29,7 @@ void quick_sort(int *array, size_t size)
 				array[i] ^= array[j];
 				print_array(array, size);
 			}
-	    	}
+		}
 	}
 
 	i++;
