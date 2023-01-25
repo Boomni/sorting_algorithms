@@ -9,39 +9,37 @@
  *
  * Return: void
  */
-void partition(int *array, int start, int end)
+void quick_sort(int *array, size_t size)
 {
-	int pivot = array[end];
-	int i = start - 1;
-	size_t j;
-	int *temp;
+	int pivot = array[size - 1];
+	size_t i = -1, j;
 
-	if (start >= end)
+	if (size < 2)
 		return;
 
-	for (j = start; j < end; j++)
+	for (j = 0; j < size - 1; j++)
 	{
-		if (array[j] < pivot)
+		if (array[j] <= pivot)
 		{
 			i++;
-			temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
-			print_array(array, end + 1);
-		}
+			if (i != j)
+			{
+				array[i] ^= array[j];
+				array[j] ^= array[i];
+				array[i] ^= array[j];
+				print_array(array, size);
+			}
+	    	}
 	}
 
 	i++;
-	temp = array[i];
-	array[i] = pivot;
-	array[end] = temp;
-	print_array(array, end + 1);
-
-	partition(array, start, i - 1);
-	partition(array, i + 1, end);
-}
-
-void quick_sort(int *array, size_t size)
-{
-	partition(array, 0, size - 1);
+	if (i != size - 1)
+	{
+		array[i] ^= array[size - 1];
+		array[size - 1] ^= array[i];
+		array[i] ^= array[size - 1];
+		print_array(array, size);
+	}
+	quick_sort(array, i);
+	quick_sort(array + i + 1, size - i - 1);
 }
