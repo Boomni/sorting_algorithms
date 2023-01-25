@@ -15,6 +15,8 @@ void bubble_sort(int *array, size_t size)
 	bool swapped = true;
 	size_t i;
 
+	if (array == NULL || size == 0)
+		return;
 	while (swapped)
 	{
 		swapped = false;
